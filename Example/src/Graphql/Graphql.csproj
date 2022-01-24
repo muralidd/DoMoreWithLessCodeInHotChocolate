@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Custom\**" />
+    <Content Remove="Custom\**" />
+    <EmbeddedResource Remove="Custom\**" />
+    <None Remove="Custom\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HotChocolate" Version="12.5.0" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="12.5.0" />
     <PackageReference Include="HotChocolate.Data" Version="12.5.0" />

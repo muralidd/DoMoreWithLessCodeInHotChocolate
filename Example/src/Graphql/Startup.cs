@@ -29,8 +29,10 @@ namespace Example.Graphql
             services.AddSingleton<IBookingsRepository, BookingsRepository>();
             services.AddGraphQLServer()
                 .AddDocumentFromFile(schemaFile)
-                .AddQueryType<Query>()
-                .AddMutationType<Mutation>()
+                //.AddQueryType<Query>()
+                //.AddMutationType<Mutation>()
+                .AddResolver(typeof(Query))
+                .AddResolver(typeof(Mutation))
                 .AddType<UserTypeExtension>()
                 .AddFiltering()
                 .AddSorting();

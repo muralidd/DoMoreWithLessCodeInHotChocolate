@@ -3,7 +3,7 @@
   mutation: Mutation
 }
 
-type Booking {
+extend type Booking {
   id: UUID!
   userId: UUID!
   date: DateTime!
