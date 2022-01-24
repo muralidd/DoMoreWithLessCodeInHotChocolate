@@ -16,5 +16,15 @@
     <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="gqlschema\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="gqlschema\schema.graphql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
