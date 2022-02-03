@@ -18,18 +18,7 @@ namespace Graphql
                 IObjectFieldDescriptor descriptor,
                 MemberInfo member)
         {
-            
-            descriptor.Use(next => async context =>
-            {
-                try
-                {
-                    await next(context);
-                }
-                catch (Exception ex)
-                {
-                    context.ContextData["ex"] = ex.Message;
-                }
-            });
+            descriptor.UseSorting(typeof(User));
         }
     }
 }
