@@ -5,6 +5,7 @@ using Example.DataAccess;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate.Types;
+using Graphql;
 
 namespace Example.Graphql
 {
@@ -21,9 +22,10 @@ namespace Example.Graphql
             _bookingsRepository = bookingsRepository;
         }
 
-        [UsePaging]
-        [UseSorting]
-        [UseFiltering]
+        //[UsePaging]
+        //[UseSorting]
+        //[UseFiltering]
+        [UseCustomSorting]
         public IQueryable<User> GetUsers()
         {
             return _userRepository.GetUsers();
