@@ -18,7 +18,13 @@ namespace Graphql
                 IObjectFieldDescriptor descriptor,
                 MemberInfo member)
         {
-            descriptor.UseSorting(typeof(User));
+            var methodInfo = member as MethodInfo;
+            if(methodInfo != null){
+                var type = methodInfo.ReturnType.GenericTypeArguments[0];
+                descriptor.UseSorting(type);                
+            }
         }
     }
+
+    
 }

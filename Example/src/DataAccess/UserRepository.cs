@@ -12,6 +12,10 @@ namespace Example.DataAccess
             new User(Guid.Parse("1a04e0c4-858e-486b-aa56-1e251bce454b"), "sepa", "Pascal", "Senn"),
             new User(Guid.Parse("46c2a5f5-cb76-43e7-89a3-f33b690e9c40"), "sasa", "Sam", "Sampleman"),
             new User(Guid.Parse("738160ae-4c67-48e5-a64f-66199c3afe7b"), "luga", "Gabriel", "Lucaci"),
+            new User(Guid.Parse("138160ae-4c67-48e5-a64f-66199c3afe7b"), "auga", "Aabriel", "Aucaci"),
+            new User(Guid.Parse("238160ae-4c67-48e5-a64f-66199c3afe7b"), "buga", "Babriel", "Bucaci"),
+            new User(Guid.Parse("338160ae-4c67-48e5-a64f-66199c3afe7b"), "cuga", "Cabriel", "Cucaci"),
+            new User(Guid.Parse("438160ae-4c67-48e5-a64f-66199c3afe7b"), "duga", "Dabriel", "Ducaci"),
         }.ToDictionary(x => x.Id);
 
         public IQueryable<User> GetUsers() => _users.Values.AsQueryable();

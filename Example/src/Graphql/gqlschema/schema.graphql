@@ -23,7 +23,7 @@ type Query {
   bookings: [Booking!]!
 }
 
-type User {
+extend type User {
   id: UUID!
   userName: String!
   name: String!

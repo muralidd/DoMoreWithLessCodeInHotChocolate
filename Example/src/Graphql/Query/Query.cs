@@ -3,8 +3,6 @@ using System.Linq;
 using Example.Abstractions;
 using Example.DataAccess;
 using System.Threading.Tasks;
-using HotChocolate.Data;
-using HotChocolate.Types;
 using Graphql;
 
 namespace Example.Graphql
@@ -25,6 +23,7 @@ namespace Example.Graphql
         //[UsePaging]
         //[UseSorting]
         //[UseFiltering]
+        [UseOffsetPaging]
         [UseCustomSorting]
         public IQueryable<User> GetUsers()
         {
