@@ -7,9 +7,9 @@ using System.Runtime.CompilerServices;
 
 namespace Graphql
 {
-    public class UseCustomSortingAttribute : ObjectFieldDescriptorAttribute
+    public class UseCustomFilteringAttribute : ObjectFieldDescriptorAttribute
     {
-        public UseCustomSortingAttribute([CallerLineNumber] int order = 0)
+        public UseCustomFilteringAttribute([CallerLineNumber] int order = 0)
         {
             this.Order = order;
         }
@@ -21,7 +21,7 @@ namespace Graphql
             var methodInfo = member as MethodInfo;
             if(methodInfo != null){
                 var type = methodInfo.ReturnType.GenericTypeArguments[0];
-                descriptor.UseSorting(type);                
+                descriptor.UseFiltering(type);                
             }
         }
     }

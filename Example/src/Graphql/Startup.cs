@@ -34,7 +34,7 @@ namespace Example.Graphql
                 .AddResolver(typeof(Query))
                 .AddResolver(typeof(Mutation))
                 .AddType<UserTypeExtension>()
-                //.AddFiltering()
+                .AddFiltering()
                 .AddSorting()
                 .SetPagingOptions(new HotChocolate.Types.Pagination.PagingOptions() { 
                     MaxPageSize = 100,

@@ -9,7 +9,7 @@ namespace Graphql
     {
         public UseOffsetPagingAttribute([CallerLineNumber] int order = 0)
         {
-
+            this.Order = order;
         }
         public override void OnConfigure(
                 IDescriptorContext context,

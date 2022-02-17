@@ -25,6 +25,7 @@ namespace Example.Graphql
         //[UseFiltering]
         [UseOffsetPaging]
         [UseCustomSorting]
+        [UseCustomFiltering]
         public IQueryable<User> GetUsers()
         {
             return _userRepository.GetUsers();
