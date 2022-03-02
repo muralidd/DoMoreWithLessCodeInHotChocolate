@@ -26,7 +26,7 @@ type Mutation {
 }
 
 type Query {
-  users(order: [UserSortInput!] where: UserFilterInput): UserCollectionSegment
+  users(skip:Int! take: Int! order: [UserSortInput!] where: UserFilterInput): UserCollectionSegment
   user(userId: UUID!): User!
   bookings: [Booking!]!
 }
