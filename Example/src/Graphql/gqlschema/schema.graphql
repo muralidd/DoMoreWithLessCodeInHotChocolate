@@ -13,12 +13,20 @@ type ChangeUserNamePayload {
   user: User!
 }
 
+"Information about the offset pagination."
+extend type CollectionSegmentInfo {
+  "Indicates whether more items exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more items exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+}
+
 type Mutation {
   changeUserName(input: ChangeUserNameInput!): ChangeUserNamePayload!
 }
 
 type Query {
-  users(): [User!]!
+  users(order: [UserSortInput!] where: UserFilterInput): UserCollectionSegment
   user(userId: UUID!): User!
   bookings: [Booking!]!
 }
@@ -31,11 +39,68 @@ extend type User {
   bookings: [Booking!]!
 }
 
+extend type UserCollectionSegment {
+  items: [User!]
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  totalCount: Int!
+}
+
 input ChangeUserNameInput {
   userId: ID
   userName: String!
 }
 
+extend input ComparableGuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID!]
+  nin: [UUID!]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+extend input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+extend input UserFilterInput {
+  and: [UserFilterInput!]
+  or: [UserFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  userName: StringOperationFilterInput
+  name: StringOperationFilterInput
+  surname: StringOperationFilterInput
+}
+
+extend input UserSortInput {
+  id: SortEnumType
+  userName: SortEnumType
+  name: SortEnumType
+  surname: SortEnumType
+}
+
+extend enum SortEnumType {
+  ASC
+  DESC
+}
 
 "The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
 directive @defer("If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to." label: String "Deferred when true." if: Boolean) on FRAGMENT_SPREAD | INLINE_FRAGMENT

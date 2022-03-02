@@ -1,6 +1,7 @@
 ﻿using Example.Abstractions;
 using HotChocolate.Types;
 using HotChocolate.Types.Descriptors;
+using HotChocolate.Types.Descriptors.Definitions;
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -23,6 +24,25 @@ namespace Graphql
                 var type = methodInfo.ReturnType.GenericTypeArguments[0];
                 descriptor.UseFiltering(type);                
             }
+
+            descriptor
+            .Extend()
+            .OnBeforeCreate(
+                (c, definition) => {
+                    ArgumentDefinition foundArg = null;
+                    foreach (var arg in definition.Arguments)
+                    {
+                        if (arg.Name.Value == "where")
+                        {
+                            foundArg = arg;
+                            break;
+                        }
+                    }
+                    if (foundArg != null)
+                    {
+                        definition.Arguments.Remove(foundArg);
+                    }
+                });
         }
     }
 
